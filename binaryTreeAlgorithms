@@ -888,15 +888,18 @@ class TreeNode
 		int ans = findLevel(root.left, key, level+1);
 		return (ans != -1)? ans: findLevel(root.right, key, level+1);
 	}
+	boolean[] visited;
 	public void printKDistantFromLeaf(TreeNode root, int k)
 	{
 		int len = root.height(root);
 		int[] path = new int[len];
 		int pathlen = 0;
-		boolean[] visited = new boolean[len];
-		printKDistantFromLeafUtil(root, k, path, pathlen, visited);
+		visited = new boolean[len];
+		for(int i=0; i<len; i++)
+		   visited[i] = false;
+		printKDistantFromLeafUtil(root, k, path, pathlen);
 	}
-	public void printKDistantFromLeafUtil(TreeNode root, int k, int[] path, int pathlen, boolean[] visited)
+	public void printKDistantFromLeafUtil(TreeNode root, int k, int[] path, int pathlen)
 	{
 		if(root == null)
 			return;
@@ -906,10 +909,11 @@ class TreeNode
 		if(root.left == null && root.right == null && (pathlen-k-1) >=0 && visited[pathlen-k-1] == false)
 		{
 			System.out.println(path[pathlen-k-1]);
+			visited[pathlen-k-1] = true;
 			return;
 		}
-		printKDistantFromLeafUtil(root.left, k, path, pathlen, visited);
-		printKDistantFromLeafUtil(root.right, k, path, pathlen, visited);
+		printKDistantFromLeafUtil(root.left, k, path, pathlen);
+		printKDistantFromLeafUtil(root.right, k, path, pathlen);
 	}
 	public int printKDistantFromNode(TreeNode root, int target, int k)
 	{
