@@ -169,10 +169,11 @@ class TreeNode
 		}
 		return root;
 	}
-	public TreeNode connectLevelNodesRecursive2(TreeNode root)
+	public TreeNode connectLevelNodesRecursive2(TreeNode root)         //Works for complete binary trees
 	{
 		if(root == null)
 			return null;
+		root.nextRight = null;
 		connectLevelNodesRecursive2Util(root);
 		return root;
 	}
