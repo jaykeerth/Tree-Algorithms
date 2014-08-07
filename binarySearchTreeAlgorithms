@@ -918,7 +918,7 @@ public class TreeNode {
 		else
 		{
 			TreeNode p = node.parent;
-			while(p != null && p.left == node)
+			while(p != null && p.left != node)
 			{
 				p = p.parent;
 				node = p;
