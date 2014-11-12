@@ -453,7 +453,7 @@ public class TreeNode {
 		if(j == size && k == size)
 			return true;
 		if(((j == size) ^ (k == size)) || (a[j] != b[k]))
-				return false;                                    // If there are no elements in the left subtree, search from the initial index in the right subtree
+				return false;                                    // left subtree and right subtree
 		return isIdenticalUtil(a, b, size, index1+1, index2+1, min, a[j]) && isIdenticalUtil(a, b, size, index1+1, index2+1, a[j], max);
 	}
 	
